@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cambiar título de la página -->
+  <title>Youtube - Tori</title>
+
+  <!-- Descripción para motores de búsqueda -->
+  <meta name="description" content="Tori.">
+
+  <!-- Palabras clave (no tan importantes hoy en día, pero útil para SEO) -->
+  <meta name="keywords" content="Tori, desarrollo de juegos, juego de terror, YouTube, videojuegos, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Añadir favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <h1>Tori</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="juegos.html">Juegos</a>
+      <a href="youtube.html">YouTube</a>
+      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="galeria.html">Galería</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Últimos vídeos</h2>
+    <div id="videos"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 Tori</p>
+  </footer>
+
+  <script>
+    const apiKey = 'AIzaSyAnotxWv4aVbMuAhux-jEwGsgYacNalTas';
+    const channelId = 'UCFy4ibLoLjnW0N4AY7JDj7Q'; // Tu ID de canal
+    const maxResults = 30; // Pedimos más para filtrar luego (10 vídeos)
+
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${maxResults}`)
+      .then(response => response.json())
+      .then(async data => {
+        const items = data.items.filter(item => item.id.kind === "youtube#video");
+
+        const videoIds = items.map(item => item.id.videoId);
+
+        const detailsResponse = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds.join(',')}&part=contentDetails,snippet`);
+        const detailsData = await detailsResponse.json();
+
+        // Filtramos los vídeos largos (más de 60 segundos y no verticales)
+        const longVideos = detailsData.items.filter(video => {
+          const duration = video.contentDetails.duration;
+          const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/); // Aceptamos duración en horas, minutos y segundos
+          const hours = match?.[1] ? parseInt(match[1]) : 0;
+          const minutes = match?.[2] ? parseInt(match[2]) : 0;
+          const seconds = match?.[3] ? parseInt(match[3]) : 0;
+          const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+
+          // Filtrar vídeos cortos (≤ 60 segundos)
+          const isShort = totalSeconds <= 60;
+
+          // Encontramos el item de metadata (para ver tamaño de miniatura)
+          const meta = items.find(item => item.id.videoId === video.id);
+          const thumb = meta?.snippet?.thumbnails?.medium;
+          const isVertical = thumb?.height > thumb?.width;
+
+          // Excluir vídeos cortos y verticales (Shorts)
+          return !isShort && !isVertical;
+        });
+
+        const videoContainer = document.getElementById('videos');
+
+        // Añadimos los vídeos filtrados al contenedor (ahora mostramos los 6 primeros)
+        longVideos.slice(0, 6).forEach(video => {
+          const id = video.id;
+          const meta = items.find(item => item.id.videoId === id);
+          const title = meta.snippet.title;
+          const thumbnail = meta.snippet.thumbnails.medium.url;
+          const url = `https://www.youtube.com/watch?v=${id}`;
+
+          const a = document.createElement('a');
+          a.href = url;
+          a.target = "_blank";
+          a.className = "video-card";
+
+          a.innerHTML = `
+            <img class="video-thumb" src="${thumbnail}" alt="${title}">
+            <div class="video-title">${title}</div>
+          `;
+
+          videoContainer.appendChild(a);
+        });
+      })
+      .catch(error => {
+        console.error('Error al cargar los vídeos:', error);
+      });
+  </script>
+</body>
+</html>

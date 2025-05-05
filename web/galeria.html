@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cambiar título de la página -->
+  <title>Contacto - Tori</title>
+
+  <!-- Descripción para motores de búsqueda -->
+  <meta name="description" content="Tori.">
+
+  <!-- Palabras clave (no tan importantes hoy en día, pero útil para SEO) -->
+  <meta name="keywords" content="Tori, desarrollo de juegos, juego de terror, YouTube, videojuegos, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Añadir favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Tori</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="juegos.html">Juegos</a>
+      <a href="youtube.html">YouTube</a>
+      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="galeria.html">Galería</a>
+    </nav>
+  </header>
+
+<main>
+   <h2>Galería de Imágenes</h2>
+  <div id="gallery">
+    <!-- Aquí irán los elementos de la galería -->
+    <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos1.jpg')">
+      <img src="images/gallery/eventos1.jpg" alt="Imagen 1">
+      <div class="gallery-item-description">Tori con Guinxu</div>
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos2.jpg')">
+      <img src="images/gallery/eventos2.jpg" alt="Imagen 2">
+      <div class="gallery-item-description">Tori con LuisCanary y ChardiTronic</div>
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos3.jpg')">
+      <img src="images/gallery/eventos3.jpg" alt="Imagen 3">
+      <div class="gallery-item-description">Tori con LuisCanary, Chuso y Bala7</div>
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('images/gallery/eventos4.jpg')">
+      <img src="images/gallery/eventos4.jpg" alt="Imagen 4">
+      <div class="gallery-item-description">Tori con LuisCanary, Daniel Robledo, Charlie y Rita</div>
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('images/gallery/eventos5.jpg')">
+      <img src="images/gallery/eventos5.jpg" alt="Imagen 5">
+      <div class="gallery-item-description">Tori con Daniel Robledo</div>
+    </div>
+
+    <!-- Agregar más imágenes aquí -->
+  </div>
+
+  <!-- Imagen grande para previsualizar -->
+  <div id="large-image-container">
+    <!-- Botón de cerrar -->
+    <button id="close-btn" onclick="closeLargeImage()">X</button>
+    <img id="large-image" src="" alt="Imagen grande">
+    <div id="large-image-description"></div>
+  </div>
+
+</main>
+
+  <script>
+    // Función para mostrar la imagen grande y la descripción
+    function showLargeImage(imageSrc, description) {
+      const largeImageContainer = document.getElementById('large-image-container');
+      const largeImage = document.getElementById('large-image');
+      const largeImageDescription = document.getElementById('large-image-description');
+
+      // Cambiar la fuente de la imagen y la descripción
+      largeImage.src = imageSrc;
+      largeImageDescription.textContent = description;
+
+      // Mostrar la imagen grande
+      largeImageContainer.style.display = 'flex';
+    }
+
+    // Función para cerrar la imagen grande
+    function closeLargeImage() {
+      const largeImageContainer = document.getElementById('large-image-container');
+      largeImageContainer.style.display = 'none';
+    }
+  </script>
+
+
+  <footer>
+    <p>© 2025 Tori</p>
+  </footer>
+</body>
+</html>

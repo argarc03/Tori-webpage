@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cambiar título de la página -->
+  <title>Tori - Desarrollador de Videojuegos</title>
+
+  <!-- Descripción para motores de búsqueda -->
+  <meta name="description" content="Tori.">
+
+  <!-- Palabras clave (no tan importantes hoy en día, pero útil para SEO) -->
+  <meta name="keywords" content="Tori, desarrollo de juegos, juego de terror, YouTube, videojuegos, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Añadir favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <header>
+  
+
+    <button class="btn-inicio">
+       <img src="favicon.ico" alt="Icono" class="icono-boton">
+      Tori
+    </button>
+    <nav>
+      <a href="juegos.html">Juegos</a>
+      <a href="youtube.html">YouTube</a>
+      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="galeria.html">Galería</a>
+    </nav>
+	  <div class="spacer"></div>
+	<select id="language-selector">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </header>
+
+<!-- Banner -->
+  <div class="banner">
+    <img src="images/gallery/banner.jpg" alt="Banner de la página" />
+  </div>
+
+
+
+  <main class="page-content">
+	<div class="text-with-image">
+	  <section>
+      <h2>Bienvenido</h2>
+      <p>Desarrollador de juegos indie y creador de contenido. Aquí puedes ver mis proyectos y vídeos.</p>
+	  <h1>Youtube: <span id="subCount">0</span></h1>
+    </section>
+	  <img src="images/gallery/tori3.jpg" alt="Descripción de la imagen" />
+	</div>
+	
+	
+	
+	
+	    <h2>Últimos vídeos</h2>
+		<div id="videos"></div>
+	
+	
+  </main>
+
+
+
+<script>
+  const channelId = "UCFy4ibLoLjnW0N4AY7JDj7Q"; // remplaza con el ID real
+
+  fetch(`https://api.socialcounts.org/youtube-live-subscriber-count/${channelId}`)
+    .then(res => res.json())
+    .then(data => {
+      let count = data.est_sub || data.API_sub || "Desconocido";
+
+      // Función para formatear el número
+      function formatNumber(num) {
+        if (num >= 1e6) {
+          return (num / 1e6).toFixed(1) + 'M'; // Para millones
+        } else if (num >= 1e3) {
+          return (num / 1e3).toFixed(1) + 'k'; // Para miles
+        } else {
+          return num; // Menos de 1000, mostrar tal cual
+        }
+      }
+
+      // Formatear el número antes de mostrarlo
+      document.getElementById("subCount").textContent = formatNumber(count);
+    })
+    .catch(err => {
+      console.error("Error al obtener suscriptores:", err);
+      document.getElementById("subCount").textContent = "Error";
+    });
+	
+	
+	
+	
+	// videos
+	const apiKey = 'AIzaSyAnotxWv4aVbMuAhux-jEwGsgYacNalTas';
+    const maxResults = 30; // Pedimos más para filtrar luego (10 vídeos)
+
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${maxResults}`)
+      .then(response => response.json())
+      .then(async data => {
+        const items = data.items.filter(item => item.id.kind === "youtube#video");
+
+        const videoIds = items.map(item => item.id.videoId);
+
+        const detailsResponse = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds.join(',')}&part=contentDetails,snippet`);
+        const detailsData = await detailsResponse.json();
+
+        // Filtramos los vídeos largos (más de 60 segundos y no verticales)
+        const longVideos = detailsData.items.filter(video => {
+          const duration = video.contentDetails.duration;
+          const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/); // Aceptamos duración en horas, minutos y segundos
+          const hours = match?.[1] ? parseInt(match[1]) : 0;
+          const minutes = match?.[2] ? parseInt(match[2]) : 0;
+          const seconds = match?.[3] ? parseInt(match[3]) : 0;
+          const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+
+          // Filtrar vídeos cortos (≤ 60 segundos)
+          const isShort = totalSeconds <= 60;
+
+          // Encontramos el item de metadata (para ver tamaño de miniatura)
+          const meta = items.find(item => item.id.videoId === video.id);
+          const thumb = meta?.snippet?.thumbnails?.medium;
+          const isVertical = thumb?.height > thumb?.width;
+
+          // Excluir vídeos cortos y verticales (Shorts)
+          return !isShort && !isVertical;
+        });
+
+        const videoContainer = document.getElementById('videos');
+
+        // Añadimos los vídeos filtrados al contenedor (ahora mostramos los 6 primeros)
+        longVideos.slice(0, 6).forEach(video => {
+          const id = video.id;
+          const meta = items.find(item => item.id.videoId === id);
+          const title = meta.snippet.title;
+          const thumbnail = meta.snippet.thumbnails.medium.url;
+          const url = `https://www.youtube.com/watch?v=${id}`;
+
+          const a = document.createElement('a');
+          a.href = url;
+          a.target = "_blank";
+          a.className = "video-card";
+
+          a.innerHTML = `
+            <img class="video-thumb" src="${thumbnail}" alt="${title}">
+            <div class="video-title">${title}</div>
+          `;
+
+          videoContainer.appendChild(a);
+        });
+      })
+      .catch(error => {
+        console.error('Error al cargar los vídeos:', error);
+      });
+</script>
+
+
+  <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
+</body>
+</html>

@@ -1,5 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500; /* Puedes usar 700 para más negrita */
   line-height: 1.6;
   margin: 0;
   padding: 0; /* 40px a izquierda y derecha */
@@ -29,7 +30,7 @@ header {
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 24px; /* Aumentamos el padding lateral */
+  padding: 0 4px; /* Aumentamos el padding lateral */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   box-sizing: border-box;
@@ -46,9 +47,10 @@ nav {
 }
 
 nav a {
-  
+  font-size: 2rem;
   text-decoration: none;
   color: #66f;
+  weight: bold;
 }
 
 main {
@@ -68,7 +70,14 @@ section {
 
 a {
   color: #4cf;
+  transition: transform 0.2s ease, color 0.2s;
 }
+
+a:hover {
+  
+  transform: scale(1.1);
+}
+
 
 footer {
   background: #222;
@@ -79,7 +88,7 @@ footer {
 
 footer a:hover {
   color: #ff4444;
-  transform: scale(1.05);
+  transform: scale(1.18);
 }
 
 
@@ -269,8 +278,10 @@ footer a:hover {
 }
 
 .btn-inicio {
-  background-color: #007bff;
-  color: white;
+  display: inline-flex;
+  align-items: center; /* Centra verticalmente */
+  background-color: #dff8d0;
+  color: black;
   padding: 15px 30px;
   font-size: 18px;
   border: none;
@@ -283,7 +294,7 @@ footer a:hover {
 }
 
 .btn-inicio:hover {
-  background-color: #0056b3;
+  background-color: #869686;
 }
 
 .icono-boton {
@@ -302,4 +313,67 @@ nav a {
 
 nav a:hover {
   color: #ccc;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.game-card {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+.game-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.game-title {
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 300px;
+}
+
+.imagen-superpuesta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px; /* Tamaño más grande */
+  height: auto;
+  z-index: 10;
+  filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.6));
+}
+
+.steam-widget {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
 }

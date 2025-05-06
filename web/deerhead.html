@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cambiar título de la página -->
+  <title>Deer Head - Tori</title>
+
+  <!-- Descripción para motores de búsqueda -->
+  <meta name="description" content="Tori.">
+
+  <!-- Palabras clave (no tan importantes hoy en día, pero útil para SEO) -->
+  <meta name="keywords" content="Tori, desarrollo de juegos, juego de terror, YouTube, videojuegos, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Añadir favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+  <header>
+  
+
+    <button class="btn-inicio" onclick="window.location.href='index.html'">
+       <strong>TORI</strong>
+	   <img src="images/icon.png" alt="Icono" class="icono-boton">
+    </button>
+    <nav>
+      <a href="juegos.html">Juegos</a>
+      <a href="youtube.html">YouTube</a>
+      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="galeria.html">Galería</a>
+    </nav>
+	  <div class="spacer"></div>
+	<select id="language-selector">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </header>
+
+<!-- Banner -->
+<div class="banner-container">
+  <img src="images/deerhead/banner.png" class="banner-img" alt="Banner de fondo">
+  <img src="images/deerhead/deerhead_logo.png" class="imagen-superpuesta" alt="Imagen encima">
+</div>
+
+
+
+  <main class="page-content">
+	
+	<h2 style="text-align: center;">Explora un bosque en busca del monstruo con cabeza de ciervo</h2>
+	<div class="steam-widget">
+	  <iframe 
+		src="https://store.steampowered.com/widget/3492770/" 
+		frameborder="0" 
+		width="646" 
+		height="190">
+	  </iframe>
+	</div>
+
+	<div>
+	  <section>
+      <h2>Ficha</h2>
+	  <li><strong>Estado:</strong> En desarrollo</li>
+	  <li><strong>Lanzamiento:</strong> 2025</li>
+	  <li><strong>Género:</strong> Terror</li>
+	  <li><strong>Idiomas:</strong> Español, Inglés</li>
+	  <li><strong>Plataforma:</strong> Windows</li>
+	  
+      </section>
+	</div>
+	
+	<div>
+	  <section>
+      <h2>Explora el Bosque</h2>
+	  <div>Decidiste tomar unas vacaciones en el relajante bosque... 
+	  pero no esperabas que estuviera maldito. 
+	  Debes explorar el bosque y descubrir la verdad.
+	  </div>
+	  
+      </section>
+	</div>
+
+	
+	<h2>Capturas</h2>
+  <div id="gallery">
+    <!-- Aquí irán los elementos de la galería -->
+    <div class="gallery-item" onclick="showLargeImage('images/gallery/tori3.jpg')">
+      <img src="images/gallery/tori3.jpg" alt="Imagen 1">
+    </div>
+
+    <!-- Agregar más imágenes aquí -->
+  </div>
+	
+	  <!-- Imagen grande para previsualizar -->
+  <div id="large-image-container">
+    <!-- Botón de cerrar -->
+    <button id="close-btn" onclick="closeLargeImage()">X</button>
+    <img id="large-image" src="" alt="Imagen grande">
+    <div id="large-image-description"></div>
+  </div>
+	
+  </main>
+  <script>
+    // Función para mostrar la imagen grande y la descripción
+    function showLargeImage(imageSrc, description) {
+      const largeImageContainer = document.getElementById('large-image-container');
+      const largeImage = document.getElementById('large-image');
+      const largeImageDescription = document.getElementById('large-image-description');
+
+      // Cambiar la fuente de la imagen y la descripción
+      largeImage.src = imageSrc;
+      largeImageDescription.textContent = description;
+
+      // Mostrar la imagen grande
+      largeImageContainer.style.display = 'flex';
+    }
+
+    // Función para cerrar la imagen grande
+    function closeLargeImage() {
+      const largeImageContainer = document.getElementById('large-image-container');
+      largeImageContainer.style.display = 'none';
+    }
+  </script>
+
+
+
+
+  <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
+</body>
+</html>

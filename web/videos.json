@@ -1,0 +1,15 @@
+{
+    "videos": [
+      {
+        "title": "Título del video 1",
+        "url": "https://www.youtube.com/watch?v=VIDEO_ID_1",
+        "thumbnail": "URL_DE_LA_IMAGEN_THUMBNAIL_1"
+      },
+      {
+        "title": "Título del video 2",
+        "url": "https://www.youtube.com/watch?v=VIDEO_ID_2",
+        "thumbnail": "URL_DE_LA_IMAGEN_THUMBNAIL_2"
+      }
+    ]
+  }
+  

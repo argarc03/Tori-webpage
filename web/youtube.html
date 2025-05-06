@@ -16,28 +16,62 @@
   <!-- Añadir favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header>
-    <h1>Tori</h1>
+   <header>
+  
+
+    <button class="btn-inicio" onclick="window.location.href='index.html'">
+       <img src="favicon.ico" alt="Icono" class="icono-boton">
+      Tori
+    </button>
     <nav>
-      <a href="index.html">Inicio</a>
       <a href="juegos.html">Juegos</a>
       <a href="youtube.html">YouTube</a>
       <a href="sobre-mi.html">Sobre mí</a>
       <a href="contacto.html">Contacto</a>
       <a href="galeria.html">Galería</a>
     </nav>
+	  <div class="spacer"></div>
+	<select id="language-selector">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
   </header>
 
-  <main>
+  <main class="page-content">
     <h2>Últimos vídeos</h2>
     <div id="videos"></div>
   </main>
 
-  <footer>
-    <p>© 2025 Tori</p>
-  </footer>
+   <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
 
   <script>
     const apiKey = 'AIzaSyAnotxWv4aVbMuAhux-jEwGsgYacNalTas';

@@ -5,6 +5,9 @@ on:
     - cron: '0 0 * * *'  # Esto hace que se ejecute todos los días a medianoche UTC.
   workflow_dispatch:  # Para ejecutarlo manualmente también.
 
+permissions:
+  contents: write
+
 jobs:
   fetch_videos:
     runs-on: ubuntu-latest

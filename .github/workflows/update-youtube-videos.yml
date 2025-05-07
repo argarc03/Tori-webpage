@@ -24,7 +24,7 @@ jobs:
 
       - name: Fetch YouTube videos and update JSON
         run: |
-          node fetch_videos.js
+          node docs/fetch_videos.js
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_CHANNEL_ID: 'UCFy4ibLoLjnW0N4AY7JDj7Q'  # Cambia por tu canal

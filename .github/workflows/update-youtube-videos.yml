@@ -29,10 +29,11 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_CHANNEL_ID: 'UCFy4ibLoLjnW0N4AY7JDj7Q'  # Cambia por tu canal
           
-      - name: Commit and push changes
+      - name: Commit and push videos.json
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add videos.json
           git commit -m "Update videos list"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/argarc03/Tori-webpage.git
+      

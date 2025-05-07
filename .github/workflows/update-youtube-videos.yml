@@ -26,8 +26,7 @@ jobs:
           npm install
 
       - name: Fetch YouTube videos and update JSON
-        run: |
-          node docs/fetch_videos.js
+        run: node docs/fetch_videos.cjs
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_CHANNEL_ID: 'UCFy4ibLoLjnW0N4AY7JDj7Q'

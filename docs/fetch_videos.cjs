@@ -35,7 +35,7 @@ async function fetchVideos() {
     const videos = (await Promise.all(videoDetailsPromises)).filter(video => video !== null);
 
     // Guardamos los videos en un archivo JSON
-    fs.writeFileSync('videos.json', JSON.stringify(videos, null, 2));
+    fs.writeFileSync('docs/videos.json', JSON.stringify(videos, null, 2));
 
     console.log('Videos actualizados y guardados correctamente.');
 

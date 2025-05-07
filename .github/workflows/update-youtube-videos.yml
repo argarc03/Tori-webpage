@@ -2,8 +2,8 @@ name: Update YouTube Videos
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Esto hace que se ejecute todos los días a medianoche UTC.
-  workflow_dispatch:  # Para ejecutarlo manualmente también.
+    - cron: '0 0 * * *'  # Ejecutar todos los días a medianoche UTC.
+  workflow_dispatch:  # Permitir ejecución manual.
 
 permissions:
   contents: write
@@ -14,29 +14,28 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Install dependencies
         run: |
-          npm install axios
+          npm install
 
       - name: Fetch YouTube videos and update JSON
         run: |
           node docs/fetch_videos.js
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          YOUTUBE_CHANNEL_ID: 'UCFy4ibLoLjnW0N4AY7JDj7Q'  # Cambia por tu canal
-          
+          YOUTUBE_CHANNEL_ID: 'UCFy4ibLoLjnW0N4AY7JDj7Q'
+
       - name: Commit and push videos.json
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add videos.json
-          git commit -m "Update videos list"
+          git commit -m "Update videos list" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/argarc03/Tori-webpage.git
-      

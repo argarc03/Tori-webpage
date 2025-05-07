@@ -117,9 +117,9 @@
     .then(response => response.json())
     .then(data => {
       const videoContainer = document.getElementById('videos');
-      data.videos.forEach(video => {
+      data.forEach(video => {
         const a = document.createElement('a');
-        a.href = video.url;
+        a.href = `https://www.youtube.com/watch?v=${video.videoId}`;
         a.target = "_blank";
         a.className = "video-card";
         

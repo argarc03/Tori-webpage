@@ -155,7 +155,7 @@ footer a:hover {
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-bottom: 2px solid #ccc;
+
     }
 
     .gallery-item-description {
@@ -320,9 +320,13 @@ nav a:hover {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 40px;
+  place-items: center;
 }
 
 .game-card {
+  max-width: 600px;   /* Tamaño máximo en ancho */
+  max-height: 600px;  /* Tamaño máximo en alto */
+  width: 100%;        /* O ajustable dentro del grid */
   border: none;
   background: none;
   padding: 0;

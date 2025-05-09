@@ -7,6 +7,8 @@ body {
   background: #111;
   color: #f5f5f5;
   padding-top: 60px; /* para que el contenido no quede debajo del header */
+    max-width: 100%;
+  overflow-x: hidden;
 }
 
     .site-title {
@@ -17,6 +19,10 @@ body {
 	.page-content {
   margin-top: 40px;
   padding: 0 160px; /* Solo aplica a los lados del contenido */
+  box-sizing: border-box;
+}
+
+* {
   box-sizing: border-box;
 }
 	
@@ -69,7 +75,8 @@ section {
 }
 
 a {
-  color: #4cf;
+  color: #dff8d0;
+  text-decoration: none;
   transition: transform 0.2s ease, color 0.2s;
 }
 
@@ -231,6 +238,29 @@ footer a:hover {
   background-size: 12px;
   max-width: 160px;
   box-sizing: border-box;
+  margin-left: auto;
+  margin-right: 1rem;
+  align-self: center;
+}
+
+#language-selector-mobile {
+  display: none;
+  appearance: none;
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 16px 16px;
+  padding-right: 36px; /* Más espacio para el icono */
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
 }
 
 /* Empuja el selector a la derecha */
@@ -247,25 +277,30 @@ footer a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px; /* Espacio entre texto e imagen */
+  gap: 40px; /* Espacio entre texto e imagen */
 }
 
 .text-with-image img {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   height: auto;
   border-radius: 8px;
+  display: block;
 }
 
 
 .banner {
   width: 100%;
-  height: 300px; /* Altura del banner */
+  height: 100%; /* Altura del banner */
   overflow: hidden;
 }
 
 .banner img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
   object-fit: cover; /* Asegura que la imagen cubra todo el espacio */
   object-position: center; /* Centra la imagen */
 }
@@ -317,9 +352,12 @@ nav a:hover {
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
-  padding: 40px;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   place-items: center;
 }
 
@@ -333,6 +371,7 @@ nav a:hover {
   cursor: pointer;
   text-align: left;
   transition: transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .game-card:hover {
@@ -377,7 +416,140 @@ nav a:hover {
 }
 
 .steam-widget {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
+  width: 100%;
+  max-width: 646px; /* ancho exacto del widget de Steam */
+  margin: 0 auto; /* centra en escritorio */
+  overflow: hidden;
 }
+
+.steam-widget iframe {
+  display: block;
+  width: 100%;
+  height: 190px;
+  border: none;
+  overflow: hidden;
+}
+
+/*Boton hamburguesa en moviles*/
+/* Estilo para el contenedor del nav */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Estilo para el botón hamburguesa, oculto por defecto */
+.menu-toggle {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  display: none;  /* Ocultamos el botón en pantallas grandes */
+  cursor: pointer;
+}
+
+/* Esconde en móvil o escritorio según clase */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: inline-flex;
+}
+
+@media screen and (max-width: 768px) {
+  
+   #language-selector {
+    display: none;
+  }
+
+  #language-selector-mobile {
+    display: block;
+  }
+  
+  .mobile-only {
+    display: flex; /* Muestra el botón inicio dentro del menú */
+	width: 100%;
+	text-align: center;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    color: black;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .desktop-only {
+    display: none; /* Oculta el botón inicio de escritorio en móvil */
+  }
+  
+  .page-content {
+    padding: 0 20px;
+  }
+
+  .text-with-image {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-with-image img {
+	max-width: 400px;
+	width: 100%;
+	height: auto;
+  }
+
+  .banner-img,
+  .banner img {
+    height: 200px;
+  }
+
+  .imagen-superpuesta {
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  .menu-toggle {
+    display: block;  /* Mostramos el botón hamburguesa en móviles */
+	transform: translateX(-50%);  /* Centra el botón horizontalmente */
+	position: absolute; /* Posición absoluta para controlarlo mejor */
+    left: 50%;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #111;
+    padding: 10px;
+	
+  }
+
+  /* Estilo del menú desplegable */
+nav.show {
+  display: flex; /* Mostramos el nav cuando se activa el botón */
+  flex-direction: column;
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  width: 100%;
+  background-color: #111;
+  padding: 0px;
+  position: absolute;
+  top: 100%;  /* Asegura que el menú se desplace hacia abajo */
+  left: 0;
+  padding-bottom: 1rem; /* Espacio al final */
+  z-index: 1; /* Menú sobre el contenido pero debajo del botón */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+ /* Estilo para los elementos dentro del nav */
+nav a, #language-selector {
+  color: white;
+  width: 100%;
+  text-decoration: none;
+  margin: 10px 0; /* Añadimos margen entre los elementos */
+  text-align: center; /* Asegura que los textos estén centrados */
+}
+}
+

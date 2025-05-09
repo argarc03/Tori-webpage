@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Change page title -->
+  <title>Games - Tori</title>
+
+  <!-- Description for search engines -->
+  <meta name="description" content="Tori.">
+
+  <!-- Keywords (not very important nowadays, but useful for SEO) -->
+  <meta name="keywords" content="Tori, game development, horror game, YouTube, video games, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Add favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Language -->
+  <script>
+    const lang = localStorage.getItem('lang') || 'en';
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop();
+
+    // Function to redirect to the equivalent page in another language
+    function redirectToLanguagePage(lang) {
+      const isEnglish = currentPage.includes('-en');
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+
+      const targetPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+
+      if (currentPage !== targetPage) {
+        window.location.href = targetPage;
+      }
+    }
+
+    redirectToLanguagePage(lang);
+  </script>
+</head>
+<body>
+  <header>
+  <!-- Hamburger button only on mobile -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+  <!-- Home button for desktop -->
+  <button class="btn-inicio desktop-only" onclick="window.location.href='index-en.html'">
+    <strong>TORI</strong>
+    <img src="images/icon.png" alt="Icon" class="icono-boton">
+  </button>
+
+  <!-- Dropdown menu or navbar -->
+  <nav id="menu-nav">
+    <!-- Home button (visible only on mobile) -->
+    <button class="btn-inicio mobile-only" onclick="window.location.href='index-en.html'">
+      <strong>TORI</strong>
+      <img src="images/icon.png" alt="Icon" class="icono-boton">
+    </button>
+
+    <a href="juegos-en.html">Games</a>
+    <a href="youtube-en.html">YouTube</a>
+    <a href="sobre-mi-en.html">About Me</a>
+    <a href="contacto-en.html">Contact</a>
+    <a href="galeria-en.html">Gallery</a>
+
+    <!-- Language selector -->
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+  <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      const currentPage = window.location.pathname.split('/').pop();
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+      const newPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+      window.location.href = newPage;
+    }
+
+    // On load, select the saved language
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.getElementById('language-selector').value = savedLang;
+    });
+
+    // Function to show/hide menu
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+</header>
+
+  <main class="page-content">
+    <h1>My Games</h1>
+    <div class="games-grid">
+      <!-- Game 1 -->
+      <a class="game-card" href="deerhead-en.html">
+        <img src="images/juego1.png" alt="Game 1">
+      </a>
+    </div>
+  </main>
+
+  <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+    <div style="margin-bottom: 10px;"></div>
+    <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+
+      <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-youtube"></i>
+      </a>
+
+      <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-twitch"></i>
+      </a>
+
+      <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-tiktok"></i>
+      </a>
+
+      <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+
+    </div>
+    <p>© 2025 Tori</p>
+  </footer>
+</body>
+</html>

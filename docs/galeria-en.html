@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cambiar título de la página -->
+  <title>Gallery - Tori</title>
+
+  <!-- Descripción para motores de búsqueda -->
+  <meta name="description" content="Tori.">
+
+  <!-- Palabras clave (no tan importantes hoy en día, pero útil para SEO) -->
+  <meta name="keywords" content="Tori, desarrollo de juegos, juego de terror, YouTube, videojuegos, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Añadir favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Idioma -->
+	<script>
+	  const lang = localStorage.getItem('lang') || 'es';
+	  const currentPath = window.location.pathname;
+	  const currentPage = currentPath.split('/').pop();
+
+	  // Función para redirigir a la página equivalente en otro idioma
+	  function redirectToLanguagePage(lang) {
+		const isEnglish = currentPage.includes('-en');
+		const baseName = currentPage.replace('-en', '').replace('.html', '');
+
+		const targetPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+
+		if (currentPage !== targetPage) {
+		  window.location.href = targetPage;
+		}
+	  }
+
+	  redirectToLanguagePage(lang);
+	</script>
+</head>
+<body>
+<header>
+  <!-- Botón hamburguesa solo en móviles -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+ <!-- Botón inicio para escritorio -->
+  <button class="btn-inicio desktop-only" onclick="window.location.href='index.html'">
+    <strong>TORI</strong>
+    <img src="images/icon.png" alt="Icono" class="icono-boton">
+  </button>
+
+  <!-- Menú desplegable o navbar -->
+  <nav id="menu-nav">
+    <!-- Botón inicio (solo visible en móviles) -->
+    <button class="btn-inicio mobile-only" onclick="window.location.href='index.html'">
+      <strong>TORI</strong>
+      <img src="images/icon.png" alt="Icono" class="icono-boton">
+    </button>
+
+    <a href="juegos-en.html">Games</a>
+    <a href="youtube-en.html">YouTube</a>
+    <a href="sobre-mi-en.html">About Me</a>
+    <a href="contacto-en.html">Contact</a>
+    <a href="galeria-en.html">Gallery</a>
+
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+  <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      const currentPage = window.location.pathname.split('/').pop();
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+      const newPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+      window.location.href = newPage;
+    }
+
+    // Al cargar, selecciona el idioma guardado
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'es';
+      document.getElementById('language-selector').value = savedLang;
+    });
+
+    // Función para mostrar/ocultar el menú
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+</header>
+
+<main class="page-content">
+
+<h2>Photos of Tori</h2>
+<div id="gallery">
+  <!-- Gallery items go here -->
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori1.png')">
+    <img src="images/gallery/tori1.png" alt="Image 1">
+    <div class="gallery-item-description">Tori at his setup</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori2.jpg')">
+    <img src="images/gallery/tori2.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori posing</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori3.png')">
+    <img src="images/gallery/tori3.png" alt="Image 1">
+    <div class="gallery-item-description">Tori at a café in Barcelona</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori4.jpg')">
+    <img src="images/gallery/tori4.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori at a beach in Porto</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori5.jpg')">
+    <img src="images/gallery/tori5.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori in the snow</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori6.jpg')">
+    <img src="images/gallery/tori6.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori smelling an almond tree</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori7.jpg')">
+    <img src="images/gallery/tori7.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori entering platform 9¾</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori8.jpg')">
+    <img src="images/gallery/tori8.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori in Herbology class at Hogwarts</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori9.jpg')">
+    <img src="images/gallery/tori9.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori on the Iron Throne</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori10.jpg')">
+    <img src="images/gallery/tori10.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori Heisenberg</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori11.jpg')">
+    <img src="images/gallery/tori11.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori with sunglasses</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/tori12.jpg')">
+    <img src="images/gallery/tori12.jpg" alt="Image 1">
+    <div class="gallery-item-description">Tori being rejected</div>
+  </div>
+
+  <!-- Add more images here -->
+</div>
+
+<h2>Event Photos</h2>
+<div id="gallery">
+  <!-- Gallery items go here -->
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos1.png')">
+    <img src="images/gallery/eventos1.png" alt="Image 1">
+    <div class="gallery-item-description">Tori with Guinxu</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos2.png')">
+    <img src="images/gallery/eventos2.png" alt="Image 2">
+    <div class="gallery-item-description">Tori with LuisCanary and ChardiTronic</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos3.png')">
+    <img src="images/gallery/eventos3.png" alt="Image 3">
+    <div class="gallery-item-description">Tori with LuisCanary, Chuso and Bala7</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos4.png')">
+    <img src="images/gallery/eventos4.png" alt="Image 4">
+    <div class="gallery-item-description">Tori with LuisCanary, Daniel Robledo, Charlie and Rita</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos5.png')">
+    <img src="images/gallery/eventos5.png" alt="Image 5">
+    <div class="gallery-item-description">Tori with Daniel Robledo</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos6.png')">
+    <img src="images/gallery/eventos6.png" alt="Image 6">
+    <div class="gallery-item-description">Tori with Daniel Robledo</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos7.png')">
+    <img src="images/gallery/eventos7.png" alt="Image 7">
+    <div class="gallery-item-description">Tori with Silvia at Guerrilla</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos8.png')">
+    <img src="images/gallery/eventos8.png" alt="Image 8">
+    <div class="gallery-item-description">Tori with Silvia at a teahouse in China</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos9.png')">
+    <img src="images/gallery/eventos9.png" alt="Image 9">
+    <div class="gallery-item-description">Tori with Silvia on the Great Wall of China</div>
+  </div>
+
+  <div class="gallery-item" onclick="showLargeImage('images/gallery/eventos10.jpg')">
+    <img src="images/gallery/eventos10.jpg" alt="Image 9">
+    <div class="gallery-item-description">Tori with Silvia posing with airsoft guns</div>
+  </div>
+</div>
+
+
+    <!-- Agregar más imágenes aquí -->
+  </div>
+
+  <!-- Imagen grande para previsualizar -->
+  <div id="large-image-container">
+    <!-- Botón de cerrar -->
+    <button id="close-btn" onclick="closeLargeImage()">X</button>
+    <img id="large-image" src="" alt="Imagen grande">
+    <div id="large-image-description"></div>
+  </div>
+
+</main>
+
+  <script>
+    // Función para mostrar la imagen grande y la descripción
+    function showLargeImage(imageSrc, description) {
+      const largeImageContainer = document.getElementById('large-image-container');
+      const largeImage = document.getElementById('large-image');
+      const largeImageDescription = document.getElementById('large-image-description');
+
+      // Cambiar la fuente de la imagen y la descripción
+      largeImage.src = imageSrc;
+      largeImageDescription.textContent = description;
+
+      // Mostrar la imagen grande
+      largeImageContainer.style.display = 'flex';
+    }
+
+    // Función para cerrar la imagen grande
+    function closeLargeImage() {
+      const largeImageContainer = document.getElementById('large-image-container');
+      largeImageContainer.style.display = 'none';
+    }
+  </script>
+
+
+  <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
+</body>
+</html>

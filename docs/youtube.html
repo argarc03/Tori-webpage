@@ -16,29 +16,89 @@
   <!-- Añadir favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Idioma -->
+	<script>
+	  const lang = localStorage.getItem('lang') || 'es';
+	  const currentPath = window.location.pathname;
+	  const currentPage = currentPath.split('/').pop();
+
+	  // Función para redirigir a la página equivalente en otro idioma
+	  function redirectToLanguagePage(lang) {
+		const isEnglish = currentPage.includes('-en');
+		const baseName = currentPage.replace('-en', '').replace('.html', '');
+
+		const targetPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+
+		if (currentPage !== targetPage) {
+		  window.location.href = targetPage;
+		}
+	  }
+
+	  redirectToLanguagePage(lang);
+	</script>
 </head>
 <body>
      <header>
-  
+  <!-- Botón hamburguesa solo en móviles -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
 
-    <button class="btn-inicio" onclick="window.location.href='index.html'">
-       <strong>TORI</strong>
-	   <img src="images/icon.png" alt="Icono" class="icono-boton">
+ <!-- Botón inicio para escritorio -->
+  <button class="btn-inicio desktop-only" onclick="window.location.href='index.html'">
+    <strong>TORI</strong>
+    <img src="images/icon.png" alt="Icono" class="icono-boton">
+  </button>
+
+  <!-- Menú desplegable o navbar -->
+  <nav id="menu-nav">
+    <!-- Botón inicio (solo visible en móviles) -->
+    <button class="btn-inicio mobile-only" onclick="window.location.href='index.html'">
+      <strong>TORI</strong>
+      <img src="images/icon.png" alt="Icono" class="icono-boton">
     </button>
-    <nav>
-      <a href="juegos.html">Juegos</a>
-      <a href="youtube.html">YouTube</a>
-      <a href="sobre-mi.html">Sobre mí</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="galeria.html">Galería</a>
-    </nav>
-	  <div class="spacer"></div>
-	<select id="language-selector">
+
+    <a href="juegos.html">Juegos</a>
+    <a href="youtube.html">YouTube</a>
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="galeria.html">Galería</a>
+
+    <!-- Selector de idioma -->
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
       <option value="es">Español</option>
       <option value="en">English</option>
     </select>
-  </header>
+  </nav>
+
+   <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      const currentPage = window.location.pathname.split('/').pop();
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+      const newPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+      window.location.href = newPage;
+    }
+
+    // Al cargar, selecciona el idioma guardado
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'es';
+      document.getElementById('language-selector').value = savedLang;
+    });
+
+    // Función para mostrar/ocultar el menú
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+</header>
 
   <main class="page-content">
     <h2>Últimos vídeos</h2>

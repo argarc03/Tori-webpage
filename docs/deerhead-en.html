@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Deer Head - Tori</title>
+
+  <meta name="description" content="Tori.">
+  <meta name="keywords" content="Tori, game development, horror game, YouTube, video games, indie games, C++, Unreal Engine, Unity">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    const lang = localStorage.getItem('lang') || 'en';
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop();
+
+    function redirectToLanguagePage(lang) {
+      const isEnglish = currentPage.includes('-en');
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+      const targetPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+
+      if (currentPage !== targetPage) {
+        window.location.href = targetPage;
+      }
+    }
+
+    redirectToLanguagePage(lang);
+  </script>
+</head>
+<body>
+<header>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+  <button class="btn-inicio desktop-only" onclick="window.location.href='index-en.html'">
+    <strong>TORI</strong>
+    <img src="images/icon.png" alt="Icon" class="icono-boton">
+  </button>
+
+  <nav id="menu-nav">
+    <button class="btn-inicio mobile-only" onclick="window.location.href='index-en.html'">
+      <strong>TORI</strong>
+      <img src="images/icon.png" alt="Icon" class="icono-boton">
+    </button>
+
+    <a href="juegos-en.html">Games</a>
+    <a href="youtube-en.html">YouTube</a>
+    <a href="sobre-mi-en.html">About Me</a>
+    <a href="contacto-en.html">Contact</a>
+    <a href="galeria-en.html">Gallery</a>
+
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+  <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      const currentPage = window.location.pathname.split('/').pop();
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+      const newPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+      window.location.href = newPage;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.getElementById('language-selector').value = savedLang;
+    });
+
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+</header>
+
+<div class="banner-container">
+  <img src="images/deerhead/banner.png" class="banner-img" alt="Background Banner">
+  <img src="images/deerhead/deerhead_logo.png" class="imagen-superpuesta" alt="Overlay Image">
+</div>
+
+<main class="page-content">
+
+  <h2 style="text-align: center;">Explore a forest in search of the monster with a deer head</h2>
+  <div class="steam-widget">
+    <iframe 
+      src="https://store.steampowered.com/widget/3492770/" 
+      frameborder="0" 
+      scrolling="no">
+    </iframe>
+  </div>
+
+  <div>
+    <section>
+      <h2>Game Info</h2>
+      <li><strong>Status:</strong> In Development</li>
+      <li><strong>Release:</strong> 2025</li>
+      <li><strong>Genre:</strong> Horror</li>
+      <li><strong>Languages:</strong> Spanish, English</li>
+      <li><strong>Platform:</strong> Windows</li>
+    </section>
+  </div>
+
+  <div>
+    <section>
+      <h2>Explore the Forest</h2>
+      <div>You decided to take a relaxing vacation in the forest... 
+      but didn’t expect it to be cursed. 
+      You must explore the forest and uncover the truth.
+      </div>
+
+      <h2>The Deer Head</h2>
+      <div>A terrifying demon with a deer head lives in the forest
+      and will kill you if you’re not careful enough. Who could it be...?
+      </div>
+
+      <h2>The Camera</h2>
+      <div>There are no weapons—just you and your camera. Use it to protect yourself
+      from the monster and to see in the dark. Watch out for the battery!
+      </div>
+    </section>
+  </div>
+
+  <h2>Screenshots</h2>
+  <div id="gallery">
+    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura1.jpg')">
+      <img src="images/deerhead/captura1.jpg" alt="Image 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura2.jpg')">
+      <img src="images/deerhead/captura2.jpg" alt="Image 2">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura3.jpg')">
+      <img src="images/deerhead/captura3.jpg" alt="Image 3">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura4.jpg')">
+      <img src="images/deerhead/captura4.jpg" alt="Image 4">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura5.jpg')">
+      <img src="images/deerhead/captura5.jpg" alt="Image 5">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura6.png')">
+      <img src="images/deerhead/captura6.png" alt="Image 6">
+    </div>
+  </div>
+
+  <div id="large-image-container">
+    <button id="close-btn" onclick="closeLargeImage()">X</button>
+    <img id="large-image" src="" alt="Large Image">
+    <div id="large-image-description"></div>
+  </div>
+</main>
+
+<script>
+  function showLargeImage(imageSrc, description) {
+    const largeImageContainer = document.getElementById('large-image-container');
+    const largeImage = document.getElementById('large-image');
+    const largeImageDescription = document.getElementById('large-image-description');
+
+    largeImage.src = imageSrc;
+    largeImageDescription.textContent = description || '';
+
+    largeImageContainer.style.display = 'flex';
+  }
+
+  function closeLargeImage() {
+    const largeImageContainer = document.getElementById('large-image-container');
+    largeImageContainer.style.display = 'none';
+  }
+</script>
+
+<footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tori - Game Developer</title>
+
+  <meta name="description" content="Tori.">
+  <meta name="keywords" content="Tori, game development, horror game, YouTube, indie games, C++, Unreal Engine, Unity">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    const lang = localStorage.getItem('lang') || 'en';
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop();
+
+    function redirectToLanguagePage(lang) {
+      const isEnglish = currentPage.includes('-en');
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+
+      const targetPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+
+      if (currentPage !== targetPage) {
+        window.location.href = targetPage;
+      }
+    }
+
+    redirectToLanguagePage(lang);
+  </script>
+
+</head>
+<body>
+<header>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+  <button class="btn-inicio desktop-only" onclick="window.location.href='index-en.html'">
+    <strong>TORI</strong>
+    <img src="images/icon.png" alt="Icon" class="icono-boton">
+  </button>
+
+  <nav id="menu-nav">
+    <button class="btn-inicio mobile-only" onclick="window.location.href='index-en.html'">
+      <strong>TORI</strong>
+      <img src="images/icon.png" alt="Icon" class="icono-boton">
+    </button>
+
+    <a href="juegos-en.html">Games</a>
+    <a href="youtube-en.html">YouTube</a>
+    <a href="sobre-mi-en.html">About Me</a>
+    <a href="contacto-en.html">Contact</a>
+    <a href="galeria-en.html">Gallery</a>
+
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+  <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      const currentPage = window.location.pathname.split('/').pop();
+      const baseName = currentPage.replace('-en', '').replace('.html', '');
+      const newPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+      window.location.href = newPage;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.getElementById('language-selector').value = savedLang;
+    });
+
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+</header>
+
+<div class="banner">
+  <img src="images/banner.jpg" alt="Website banner" />
+</div>
+
+<main class="page-content">
+  <div class="text-with-image">
+    <img src="images/gallery/tori1.png" alt="Image description" />
+    <section>
+      <h1>Game Developer & Content Creator</h1>
+      <p>Hey there! I’m Tori, an indie game developer and content creator!</p>
+      <p>On my <a href="https://www.youtube.com/@ToriGameDev" target="_blank" rel="noopener noreferrer">YouTube channel</a> I share the development of my games and make content such as:
+        <li>Making Games in a Short Time</li>
+        <li>Game Development Tips</li>
+        <li>And much more!</li>
+      </p>
+      <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+        <a href="https://www.youtube.com/@ToriGameDev" target="_blank"
+           style="color: white; font-size: 2rem; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+          <i class="fab fa-youtube"></i>
+          <span style="color: white; font-size: 2rem;" id="subCount">0</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <h2>My Games</h2>
+  <div class="games-grid">
+    <a class="game-card" href="deerhead-en.html">
+      <img src="images/juego1.png" alt="Game 1">
+    </a>
+  </div>
+
+  <h2>Latest Videos</h2>
+  <div id="videos"></div>
+</main>
+
+<script>
+  const channelId = "UCFy4ibLoLjnW0N4AY7JDj7Q";
+
+  fetch(`https://api.socialcounts.org/youtube-live-subscriber-count/${channelId}`)
+    .then(res => res.json())
+    .then(data => {
+      let count = data.est_sub || data.API_sub || "Unknown";
+
+      function formatNumber(num) {
+        if (num >= 1e6) {
+          return (num / 1e6).toFixed(1) + 'M';
+        } else if (num >= 1e3) {
+          return (num / 1e3).toFixed(1) + 'k';
+        } else {
+          return num;
+        }
+      }
+
+      document.getElementById("subCount").textContent = formatNumber(count);
+    })
+    .catch(err => {
+      console.error("Error getting subscribers:", err);
+      document.getElementById("subCount").textContent = "Error";
+    });
+
+  fetch('videos.json')
+    .then(response => response.json())
+    .then(data => {
+      const videoContainer = document.getElementById('videos');
+      data.forEach(video => {
+        const a = document.createElement('a');
+        a.href = `https://www.youtube.com/watch?v=${video.videoId}`;
+        a.target = "_blank";
+        a.className = "video-card";
+
+        a.innerHTML = `
+          <img class="video-thumb" src="${video.thumbnail}" alt="${video.title}">
+          <div class="video-title">${video.title}</div>
+        `;
+
+        videoContainer.appendChild(a);
+      });
+    });
+</script>
+
+<footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
+</body>
+</html>

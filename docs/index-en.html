@@ -78,6 +78,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('lang') || 'en';
       document.getElementById('language-selector').value = savedLang;
+	  document.getElementById('language-selector-mobile').value = savedLang;
     });
 
     function toggleMenu() {

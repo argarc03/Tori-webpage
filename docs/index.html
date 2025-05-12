@@ -91,6 +91,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('lang') || 'es';
       document.getElementById('language-selector').value = savedLang;
+	  document.getElementById('language-selector-mobile').value = savedLang;
     });
 
     // Función para mostrar/ocultar el menú

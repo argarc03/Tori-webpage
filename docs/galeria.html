@@ -90,6 +90,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('lang') || 'es';
       document.getElementById('language-selector').value = savedLang;
+	  document.getElementById('language-selector-mobile').value = savedLang;
     });
 
     // Función para mostrar/ocultar el menú
@@ -216,11 +217,6 @@
 	<div class="gallery-item" onclick="showLargeImage('images/gallery/eventos9.png')">
       <img src="images/gallery/eventos9.png" alt="Imagen 9">
       <div class="gallery-item-description">Tori con Silvia en la Gran Muralla China</div>
-    </div>
-	
-	<div class="gallery-item" onclick="showLargeImage('images/gallery/eventos10.jpg')">
-      <img src="images/gallery/eventos10.jpg" alt="Imagen 9">
-      <div class="gallery-item-description">Tori con Silvia posando con armas de airsoft</div>
     </div>
 
     <!-- Agregar más imágenes aquí -->

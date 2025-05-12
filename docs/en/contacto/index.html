@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Change page title -->
+  <title>Contact - Tori</title>
+
+  <!-- Description for search engines -->
+  <meta name="description" content="Tori.">
+
+  <!-- Keywords (not very important nowadays, but useful for SEO) -->
+  <meta name="keywords" content="Tori, game development, horror game, YouTube, video games, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Add favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Language -->
+  <script>
+  const lang = localStorage.getItem('lang') || 'es';
+
+  function redirectToLanguagePage(lang) {
+   const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	  let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+
+  // Redirige solo si es diferente
+  if (window.location.pathname !== newPath) {
+    window.location.href = newPath;
+  }
+}
+
+  redirectToLanguagePage(lang);
+</script>
+
+
+</head>
+<body>
+<header>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+  <button class="btn-inicio desktop-only" onclick="window.location.href='/'">
+    <strong>TORI</strong>
+    <img src="/images/icon.png" alt="Icon" class="icono-boton">
+  </button>
+
+  <nav id="menu-nav">
+    <button class="btn-inicio mobile-only" onclick="window.location.href='/'">
+      <strong>TORI</strong>
+      <img src="/images/icon.png" alt="Icon" class="icono-boton">
+    </button>
+
+    <a href="/en/juegos/">Games</a>
+    <a href="/en/youtube/">YouTube</a>
+    <a href="/en/sobre-mi/">About Me</a>
+    <a href="/en/contacto/">Contact</a>
+    <a href="/en/galeria/">Gallery</a>
+
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+  <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+	  localStorage.setItem('lang', lang);
+
+	  const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	    let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+	  window.location.href = newPath;
+	}
+
+    // Al cargar, selecciona el idioma guardado
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'es';
+      document.getElementById('language-selector').value = savedLang;
+	  document.getElementById('language-selector-mobile').value = savedLang;
+    });
+
+    // Función para mostrar/ocultar el menú
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+  </header>
+
+  <main class="page-content">
+    <h2>Contact</h2>
+    <p>Want to collaborate? Write me at <a href="mailto:torigamedev@gmail.com">torigamedev@gmail.com</a></p>
+    <h2>FAQ</h2>
+    <h3>Can you work on my video game?</h3>
+    <p>At the moment, I don't have time to work on projects other than my own.</p>
+    <h3>Are you looking for people to work on your game?</h3>
+    <p>I usually work solo on my games, but if I ever need an artist or musician, 
+    feel free to send your portfolio to <a href="mailto:torigamedev@gmail.com">torigamedev@gmail.com</a></p>
+    <h3>What software do you use to make games?</h3>
+    <p>I usually use the Unity game engine. For graphics, I use Aseprite or Photoshop. 
+    For music, I use FL Studio.</p>
+
+  </main>
+
+  <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+    <div style="margin-bottom: 10px;"></div>
+    <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+
+      <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-youtube"></i>
+      </a>
+
+      <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-twitch"></i>
+      </a>
+
+      <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-tiktok"></i>
+      </a>
+
+      <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+
+    </div>
+    <p>© 2025 Tori</p>
+  </footer>
+</body>
+</html>

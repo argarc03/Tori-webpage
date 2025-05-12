@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Cambiar título de la página -->
-  <title>Youtube - Tori</title>
+  <title>Juegos - Tori</title>
 
   <!-- Descripción para motores de búsqueda -->
   <meta name="description" content="Tori.">
@@ -14,56 +14,62 @@
   <meta name="keywords" content="Tori, desarrollo de juegos, juego de terror, YouTube, videojuegos, indie games, C++, Unreal Engine, Unity">
 
   <!-- Añadir favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+
   <!-- Idioma -->
 	<script>
-	  const lang = localStorage.getItem('lang') || 'es';
-	  const currentPath = window.location.pathname;
-	  const currentPage = currentPath.split('/').pop();
+  const lang = localStorage.getItem('lang') || 'es';
 
-	  // Función para redirigir a la página equivalente en otro idioma
-	  function redirectToLanguagePage(lang) {
-		const isEnglish = currentPage.includes('-en');
-		const baseName = currentPage.replace('-en', '').replace('.html', '');
+  function redirectToLanguagePage(lang) {
+   const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
 
-		const targetPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
-
-		if (currentPage !== targetPage) {
-		  window.location.href = targetPage;
+	  let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
 		}
-	  }
 
-	  redirectToLanguagePage(lang);
-	</script>
+
+  // Redirige solo si es diferente
+  if (window.location.pathname !== newPath) {
+    window.location.href = newPath;
+  }
+}
+
+  redirectToLanguagePage(lang);
+</script>
 </head>
 <body>
-     <header>
+  <header>
   <!-- Botón hamburguesa solo en móviles -->
   <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
 
  <!-- Botón inicio para escritorio -->
-  <button class="btn-inicio desktop-only" onclick="window.location.href='index.html'">
+  <button class="btn-inicio desktop-only" onclick="window.location.href='/'">
     <strong>TORI</strong>
-    <img src="images/icon.png" alt="Icono" class="icono-boton">
+    <img src="/images/icon.png" alt="Icono" class="icono-boton">
   </button>
 
   <!-- Menú desplegable o navbar -->
   <nav id="menu-nav">
     <!-- Botón inicio (solo visible en móviles) -->
-    <button class="btn-inicio mobile-only" onclick="window.location.href='index.html'">
+    <button class="btn-inicio mobile-only" onclick="window.location.href='/'">
       <strong>TORI</strong>
-      <img src="images/icon.png" alt="Icono" class="icono-boton">
+      <img src="/images/icon.png" alt="Icono" class="icono-boton">
     </button>
 
-    <a href="juegos.html">Juegos</a>
-    <a href="youtube.html">YouTube</a>
-    <a href="sobre-mi.html">Sobre mí</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="galeria.html">Galería</a>
+    <a href="/juegos/">Juegos</a>
+    <a href="/youtube/">YouTube</a>
+    <a href="/sobre-mi/">Sobre mí</a>
+    <a href="/contacto/">Contacto</a>
+    <a href="/galeria/">Galería</a>
 
     <!-- Selector de idioma -->
     <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
@@ -79,12 +85,21 @@
 
   <script>
     function changeLanguage(lang) {
-      localStorage.setItem('lang', lang);
-      const currentPage = window.location.pathname.split('/').pop();
-      const baseName = currentPage.replace('-en', '').replace('.html', '');
-      const newPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
-      window.location.href = newPage;
-    }
+	  localStorage.setItem('lang', lang);
+
+	  const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	  let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+	  window.location.href = newPath;
+	}
 
     // Al cargar, selecciona el idioma guardado
     document.addEventListener('DOMContentLoaded', () => {
@@ -102,11 +117,18 @@
 </header>
 
   <main class="page-content">
-    <h2>Últimos vídeos</h2>
-    <div id="videos"></div>
+ <h1>Mis Juegos</h1>
+  <div class="games-grid">
+    <!-- Juego 1 -->
+    <a class="game-card" href="/deerhead/">
+      <img src="/images/juego1.png" alt="Juego 1">
+    </a>
+	
+
+  </div>
   </main>
 
-   <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
   <div style="margin-bottom: 10px;"></div>
   <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
 
@@ -133,27 +155,5 @@
   </div>
   <p>© 2025 Tori</p>
 </footer>
-
-  <script>
-    	// Videos
-	fetch('videos.json')
-    .then(response => response.json())
-    .then(data => {
-      const videoContainer = document.getElementById('videos');
-      data.forEach(video => {
-        const a = document.createElement('a');
-        a.href = `https://www.youtube.com/watch?v=${video.videoId}`;
-        a.target = "_blank";
-        a.className = "video-card";
-        
-        a.innerHTML = `
-          <img class="video-thumb" src="${video.thumbnail}" alt="${video.title}">
-          <div class="video-title">${video.title}</div>
-        `;
-        
-        videoContainer.appendChild(a);
-      });
-    });
-  </script>
 </body>
 </html>

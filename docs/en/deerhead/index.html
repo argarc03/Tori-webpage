@@ -9,49 +9,58 @@
   <meta name="description" content="Tori.">
   <meta name="keywords" content="Tori, game development, horror game, YouTube, video games, indie games, C++, Unreal Engine, Unity">
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <script>
-    const lang = localStorage.getItem('lang') || 'en';
-    const currentPath = window.location.pathname;
-    const currentPage = currentPath.split('/').pop();
+  const lang = localStorage.getItem('lang') || 'es';
 
-    function redirectToLanguagePage(lang) {
-      const isEnglish = currentPage.includes('-en');
-      const baseName = currentPage.replace('-en', '').replace('.html', '');
-      const targetPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
+  function redirectToLanguagePage(lang) {
+   const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
 
-      if (currentPage !== targetPage) {
-        window.location.href = targetPage;
-      }
-    }
+	  let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
 
-    redirectToLanguagePage(lang);
-  </script>
+
+  // Redirige solo si es diferente
+  if (window.location.pathname !== newPath) {
+    window.location.href = newPath;
+  }
+}
+
+  redirectToLanguagePage(lang);
+</script>
+
+
 </head>
 <body>
 <header>
   <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
-  <button class="btn-inicio desktop-only" onclick="window.location.href='index-en.html'">
+  <button class="btn-inicio desktop-only" onclick="window.location.href='/'">
     <strong>TORI</strong>
-    <img src="images/icon.png" alt="Icon" class="icono-boton">
+    <img src="/images/icon.png" alt="Icon" class="icono-boton">
   </button>
 
   <nav id="menu-nav">
-    <button class="btn-inicio mobile-only" onclick="window.location.href='index-en.html'">
+    <button class="btn-inicio mobile-only" onclick="window.location.href='/'">
       <strong>TORI</strong>
-      <img src="images/icon.png" alt="Icon" class="icono-boton">
+      <img src="/images/icon.png" alt="Icon" class="icono-boton">
     </button>
 
-    <a href="juegos-en.html">Games</a>
-    <a href="youtube-en.html">YouTube</a>
-    <a href="sobre-mi-en.html">About Me</a>
-    <a href="contacto-en.html">Contact</a>
-    <a href="galeria-en.html">Gallery</a>
+    <a href="/en/juegos/">Games</a>
+    <a href="/en/youtube/">YouTube</a>
+    <a href="/en/sobre-mi/">About Me</a>
+    <a href="/en/contacto/">Contact</a>
+    <a href="/en/galeria/">Gallery</a>
 
     <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
       <option value="es">Español</option>
@@ -66,12 +75,21 @@
 
   <script>
     function changeLanguage(lang) {
-      localStorage.setItem('lang', lang);
-      const currentPage = window.location.pathname.split('/').pop();
-      const baseName = currentPage.replace('-en', '').replace('.html', '');
-      const newPage = lang === 'en' ? `${baseName}-en.html` : `${baseName}.html`;
-      window.location.href = newPage;
-    }
+	  localStorage.setItem('lang', lang);
+
+	  const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	    let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+	  window.location.href = newPath;
+	}
 
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('lang') || 'en';
@@ -87,8 +105,8 @@
 </header>
 
 <div class="banner-container">
-  <img src="images/deerhead/banner.png" class="banner-img" alt="Background Banner">
-  <img src="images/deerhead/deerhead_logo.png" class="imagen-superpuesta" alt="Overlay Image">
+  <img src="/images/deerhead/banner.png" class="banner-img" alt="Background Banner">
+  <img src="/images/deerhead/deerhead_logo.png" class="imagen-superpuesta" alt="Overlay Image">
 </div>
 
 <main class="page-content">
@@ -135,28 +153,28 @@
 
   <h2>Screenshots</h2>
   <div id="gallery">
-    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura1.jpg')">
-      <img src="images/deerhead/captura1.jpg" alt="Image 1">
+    <div class="gallery-item" onclick="showLargeImage('/images/deerhead/captura1.jpg')">
+      <img src="/images/deerhead/captura1.jpg" alt="Image 1">
     </div>
 
-    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura2.jpg')">
-      <img src="images/deerhead/captura2.jpg" alt="Image 2">
+    <div class="gallery-item" onclick="showLargeImage('/images/deerhead/captura2.jpg')">
+      <img src="/images/deerhead/captura2.jpg" alt="Image 2">
     </div>
 
-    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura3.jpg')">
-      <img src="images/deerhead/captura3.jpg" alt="Image 3">
+    <div class="gallery-item" onclick="showLargeImage('/images/deerhead/captura3.jpg')">
+      <img src="/images/deerhead/captura3.jpg" alt="Image 3">
     </div>
 
-    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura4.jpg')">
-      <img src="images/deerhead/captura4.jpg" alt="Image 4">
+    <div class="gallery-item" onclick="showLargeImage('/images/deerhead/captura4.jpg')">
+      <img src="/images/deerhead/captura4.jpg" alt="Image 4">
     </div>
 
-    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura5.jpg')">
-      <img src="images/deerhead/captura5.jpg" alt="Image 5">
+    <div class="gallery-item" onclick="showLargeImage('/images/deerhead/captura5.jpg')">
+      <img src="/images/deerhead/captura5.jpg" alt="Image 5">
     </div>
 
-    <div class="gallery-item" onclick="showLargeImage('images/deerhead/captura6.png')">
-      <img src="images/deerhead/captura6.png" alt="Image 6">
+    <div class="gallery-item" onclick="showLargeImage('/images/deerhead/captura6.png')">
+      <img src="/images/deerhead/captura6.png" alt="Image 6">
     </div>
   </div>
 

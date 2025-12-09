@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Plant Shop - Tori</title>
+
+  <meta name="description" content="Tori.">
+  <meta name="keywords" content="Tori, game development, horror game, YouTube, video games, indie games, C++, Unreal Engine, Unity">
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+  const lang = localStorage.getItem('lang') || 'es';
+
+  function redirectToLanguagePage(lang) {
+   const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	  let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+
+  // Redirige solo si es diferente
+  if (window.location.pathname !== newPath) {
+    window.location.href = newPath;
+  }
+}
+
+  redirectToLanguagePage(lang);
+</script>
+
+
+</head>
+<body>
+<header>
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+  <button class="btn-inicio desktop-only" onclick="window.location.href='/'">
+    <strong>TORI</strong>
+    <img src="/images/icon.webp" alt="Icon" class="icono-boton">
+  </button>
+
+  <nav id="menu-nav">
+    <button class="btn-inicio mobile-only" onclick="window.location.href='/'">
+      <strong>TORI</strong>
+      <img src="/images/icon.webp" alt="Icon" class="icono-boton">
+    </button>
+
+    <a href="/en/juegos/">Games</a>
+    <a href="/en/youtube/">YouTube</a>
+    <a href="/en/sobre-mi/">About Me</a>
+    <a href="/en/contacto/">Contact</a>
+    <a href="/en/galeria/">Gallery</a>
+
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+  <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+	  localStorage.setItem('lang', lang);
+
+	  const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	    let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+	  window.location.href = newPath;
+	}
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.getElementById('language-selector').value = savedLang;
+	  document.getElementById('language-selector-mobile').value = savedLang;
+    });
+
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+</header>
+
+<div class="banner-container">
+  <img src="/images/theplantshop/banner.webp" class="banner-img" alt="Banner de fondo">
+  <img src="/images/theplantshop/theplantshop_logo.webp" class="imagen-superpuesta" alt="Imagen encima">
+</div>
+
+<main class="page-content">
+
+  <h2 style="text-align: center;">The Plant Shop is a cozy horror game where you manage a small plant shop. Craft plants, serve late-night customers and grow your plant collection to attract more people.
+</h2>
+  <div class="steam-widget">
+    <iframe 
+      src="https://store.steampowered.com/widget/4140530/" 
+      frameborder="0" 
+      scrolling="no">
+    </iframe>
+  </div>
+
+  <div>
+    <section>
+      <h2>Game Info</h2>
+      <li><strong>Status:</strong> In Development</li>
+      <li><strong>Release:</strong> 2026</li>
+      <li><strong>Genre:</strong> Horror, Management, Adventure, Casual</li>
+      <li><strong>Languages:</strong> Spanish, English, German, French, Portuguese (Brazil), Japanese, Chinese (Simplified), Korean, Russian</li>
+      <li><strong>Platform:</strong> Windows</li>
+    </section>
+  </div>
+
+  <div>
+    <section>
+    <h2>MANAGE A PLANT SHOP</h2>
+	  <div>You play as Silvia, a 26 years old girl who decides to open her own small plant shop on a late-night shift because she has a corporate job during the day.
+    </div>
+	  
+	  <h2>ATTEND CUSTOMERS</h2>
+	  <div>Your job is to serve the customers coming to the shop. Depending on the order you will have to craft flowers, plants or cacti.
+    </div>
+	  
+	  <h2>CRAFT PLANTS</h2>
+	  <div>Crafting plants is easy. You just need a plant pot, soil, a seed and water.
+    </div>
+
+    <h2>PSYCHOLOGICAL HORROR</h2>
+	  <div>The customers talk about a curse that struck the town 30 years ago. As you manage your shop, you begin to see and hear strange things. Is the curse real—or just an old legend?
+    </div>
+    </section>
+  </div>
+
+  <h2>Screenshots</h2>
+  <div id="gallery">
+    <!-- Aquí irán los elementos de la galería -->
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura1.webp')">
+      <img src="/images/theplantshop/captura1.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura2.webp')">
+      <img src="/images/theplantshop/captura2.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura3.webp')">
+      <img src="/images/theplantshop/captura3.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura4.webp')">
+      <img src="/images/theplantshop/captura4.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura5.webp')">
+      <img src="/images/theplantshop/captura5.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura6.webp')">
+      <img src="/images/theplantshop/captura6.webp" alt="Imagen 1">
+    </div>
+
+  <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura7.webp')">
+      <img src="/images/theplantshop/captura7.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura8.webp')">
+      <img src="/images/theplantshop/captura8.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura9.webp')">
+      <img src="/images/theplantshop/captura9.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura10.webp')">
+      <img src="/images/theplantshop/captura10.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura11.webp')">
+      <img src="/images/theplantshop/captura11.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura12.webp')">
+      <img src="/images/theplantshop/captura12.webp" alt="Imagen 1">
+    </div>
+
+  <div id="large-image-container">
+    <button id="close-btn" onclick="closeLargeImage()">X</button>
+    <img id="large-image" src="" alt="Large Image">
+    <div id="large-image-description"></div>
+  </div>
+</main>
+
+<script>
+  function showLargeImage(imageSrc, description) {
+    const largeImageContainer = document.getElementById('large-image-container');
+    const largeImage = document.getElementById('large-image');
+    const largeImageDescription = document.getElementById('large-image-description');
+
+    largeImage.src = imageSrc;
+    largeImageDescription.textContent = description || '';
+
+    largeImageContainer.style.display = 'flex';
+  }
+
+  function closeLargeImage() {
+    const largeImageContainer = document.getElementById('large-image-container');
+    largeImageContainer.style.display = 'none';
+  }
+</script>
+
+<footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
+</body>
+</html>

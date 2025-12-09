@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cambiar título de la página -->
+  <title>The Plant Shop - Tori</title>
+
+  <!-- Descripción para motores de búsqueda -->
+  <meta name="description" content="Tori.">
+
+  <!-- Palabras clave (no tan importantes hoy en día, pero útil para SEO) -->
+  <meta name="keywords" content="Tori, desarrollo de juegos, juego de terror, YouTube, videojuegos, indie games, C++, Unreal Engine, Unity">
+
+  <!-- Añadir favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Idioma -->
+	<script>
+  const lang = localStorage.getItem('lang') || 'es';
+
+  function redirectToLanguagePage(lang) {
+   const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	  let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+
+  // Redirige solo si es diferente
+  if (window.location.pathname !== newPath) {
+    window.location.href = newPath;
+  }
+}
+
+  redirectToLanguagePage(lang);
+</script>
+
+
+
+</head>
+<body>
+<header>
+  <!-- Botón hamburguesa solo en móviles -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
+
+ <!-- Botón inicio para escritorio -->
+  <button class="btn-inicio desktop-only" onclick="window.location.href='/'">
+    <strong>TORI</strong>
+    <img src="/images/icon.webp" alt="Icono" class="icono-boton">
+  </button>
+
+  <!-- Menú desplegable o navbar -->
+  <nav id="menu-nav">
+    <!-- Botón inicio (solo visible en móviles) -->
+    <button class="btn-inicio mobile-only" onclick="window.location.href='/'">
+      <strong>TORI</strong>
+      <img src="/images/icon.webp" alt="Icono" class="icono-boton">
+    </button>
+
+    <a href="/juegos/">Juegos</a>
+    <a href="/youtube/">YouTube</a>
+    <a href="/sobre-mi/">Sobre mí</a>
+    <a href="/contacto/">Contacto</a>
+    <a href="/galeria/">Galería</a>
+
+    <!-- Selector de idioma -->
+    <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </nav>
+
+   <select id="language-selector" onchange="changeLanguage(this.value)">
+    <option value="es">Español</option>
+    <option value="en">English</option>
+  </select>
+
+  <script>
+    function changeLanguage(lang) {
+	  localStorage.setItem('lang', lang);
+
+	  const pathParts = window.location.pathname.split('/').filter(Boolean);
+	  const isEnglish = pathParts[0] === 'en';
+	  const baseName = isEnglish ? pathParts[1] || 'index' : pathParts[0] || 'index';
+
+	  let newPath;
+		if (baseName === 'index') {
+		  newPath = lang === 'en' ? `/en/` : `/`;
+		} else {
+		  newPath = lang === 'en' ? `/en/${baseName}/` : `/${baseName}/`;
+		}
+
+	  window.location.href = newPath;
+	}
+
+    // Al cargar, selecciona el idioma guardado
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'es';
+      document.getElementById('language-selector').value = savedLang;
+	  document.getElementById('language-selector-mobile').value = savedLang;
+    });
+
+    // Función para mostrar/ocultar el menú
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('show');
+    }
+  </script>
+</header>
+
+<!-- Banner -->
+<div class="banner-container">
+  <img src="/images/theplantshop/banner.webp" class="banner-img" alt="Banner de fondo">
+  <img src="/images/theplantshop/theplantshop_logo.webp" class="imagen-superpuesta" alt="Imagen encima">
+</div>
+
+
+
+  <main class="page-content">
+	
+	<h2 style="text-align: center;">Un juego de terror acogedor donde creas plantas para clientes nocturnos mientras gestionas una pequeña tienda de plantas. Amplía tu colección, mejora tu tienda y haz crecer tu negocio.</h2>
+	<div class="steam-widget">
+	    <iframe 
+			src="https://store.steampowered.com/widget/4140530/" 
+			frameborder="0" 
+			scrolling="no">
+	    </iframe>
+	</div>
+
+	<div>
+	  <section>
+      <h2>Ficha</h2>
+	  <li><strong>Estado:</strong> En desarrollo</li>
+	  <li><strong>Lanzamiento:</strong> 2026</li>
+	  <li><strong>Género:</strong> Terror, Gestión, Aventura, Casual</li>
+	  <li><strong>Idiomas:</strong> Español, Inglés, Alemán, Francés, Portugés de Brasil, Japonés, Coreano, Chino Simplificado, Ruso</li>
+	  <li><strong>Plataforma:</strong> Windows</li>
+	  
+      </section>
+	</div>
+	
+	<div>
+	  <section>
+      <h2>GESTIONA UNA TIENDA DE PLANTAS</h2>
+	  <div>Juegas como Silvia, una chica de 26 años que decide abrir su propia tienda de plantas en el turno de noche porque trabaja en una empresa durante el día.
+	  </div>
+	  
+	  <h2>ATIENDE A LOS CLIENTES</h2>
+	  <div>Tu trabajo consiste en atender a los clientes que vienen a la tienda. Dependiendo del pedido, tendrás que crear flores, plantas o cactus.
+	  </div>
+	  
+	  <h2>FABRICA PLANTAS</h2>
+	  <div>Cultivar plantas es fácil. Solo necesitas una maceta, tierra, una semilla y agua.
+	  </div>
+
+    <h2>TERROR PSICOLÓGICO</h2>
+	  <div>Los clientes hablan de una maldición que azotó el pueblo hace 30 años. Mientras gestionas tu tienda, empiezas a ver y oír cosas extrañas. ¿Es la maldición real o solo una vieja leyenda?
+	  </div>
+	  
+      </section>
+	</div>
+
+	
+	<h2>Capturas</h2>
+  <div id="gallery">
+    <!-- Aquí irán los elementos de la galería -->
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura1.webp')">
+      <img src="/images/theplantshop/captura1.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura2.webp')">
+      <img src="/images/theplantshop/captura2.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura3.webp')">
+      <img src="/images/theplantshop/captura3.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura4.webp')">
+      <img src="/images/theplantshop/captura4.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura5.webp')">
+      <img src="/images/theplantshop/captura5.webp" alt="Imagen 1">
+    </div>
+	
+	<div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura6.webp')">
+      <img src="/images/theplantshop/captura6.webp" alt="Imagen 1">
+    </div>
+
+  <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura7.webp')">
+      <img src="/images/theplantshop/captura7.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura8.webp')">
+      <img src="/images/theplantshop/captura8.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura9.webp')">
+      <img src="/images/theplantshop/captura9.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura10.webp')">
+      <img src="/images/theplantshop/captura10.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura11.webp')">
+      <img src="/images/theplantshop/captura11.webp" alt="Imagen 1">
+    </div>
+
+    <div class="gallery-item" onclick="showLargeImage('/images/theplantshop/captura12.webp')">
+      <img src="/images/theplantshop/captura12.webp" alt="Imagen 1">
+    </div>
+
+    <!-- Agregar más imágenes aquí -->
+  </div>
+	
+	  <!-- Imagen grande para previsualizar -->
+  <div id="large-image-container">
+    <!-- Botón de cerrar -->
+    <button id="close-btn" onclick="closeLargeImage()">X</button>
+    <img id="large-image" src="" alt="Imagen grande">
+    <div id="large-image-description"></div>
+  </div>
+	
+  </main>
+  <script>
+    // Función para mostrar la imagen grande y la descripción
+    function showLargeImage(imageSrc, description) {
+      const largeImageContainer = document.getElementById('large-image-container');
+      const largeImage = document.getElementById('large-image');
+      const largeImageDescription = document.getElementById('large-image-description');
+
+      // Cambiar la fuente de la imagen y la descripción
+      largeImage.src = imageSrc;
+      largeImageDescription.textContent = description;
+
+      // Mostrar la imagen grande
+      largeImageContainer.style.display = 'flex';
+    }
+
+    // Función para cerrar la imagen grande
+    function closeLargeImage() {
+      const largeImageContainer = document.getElementById('large-image-container');
+      largeImageContainer.style.display = 'none';
+    }
+  </script>
+
+
+
+
+  <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
+  <div style="margin-bottom: 10px;"></div>
+  <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+
+    <a href="https://www.youtube.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://www.twitch.tv/ToriDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-twitch"></i>
+    </a>
+
+    <a href="https://www.instagram.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-tiktok"></i>
+    </a>
+
+    <a href="https://twitter.com/ToriGameDev" target="_blank" style="color: white; font-size: 2rem;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+  </div>
+  <p>© 2025 Tori</p>
+</footer>
+</body>
+</html>

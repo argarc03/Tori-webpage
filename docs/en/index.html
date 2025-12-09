@@ -156,7 +156,7 @@
   fetch(`https://api.socialcounts.org/youtube-live-subscriber-count/${channelId}`)
     .then(res => res.json())
     .then(data => {
-      let count = data.est_sub || data.API_sub || "Unknown";
+      let count = data.estimation_subscriberCount || data.api_subscriberCount || "+23k";
 
       function formatNumber(num) {
         if (num >= 1e6) {

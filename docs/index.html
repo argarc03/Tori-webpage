@@ -182,7 +182,7 @@
   fetch(`https://api.socialcounts.org/youtube-live-subscriber-count/${channelId}`)
     .then(res => res.json())
     .then(data => {
-      let count = data.estimation_subscriberCount || data.api_subscriberCount || "+23k";
+      let count = data.counters.estimation.subscriberCount || data.counters.api.subscriberCount || "+23k";
 
       // Función para formatear el número
       function formatNumber(num) {

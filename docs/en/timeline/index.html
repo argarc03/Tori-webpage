@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Change page title -->
-  <title>Games - Tori</title>
+  <title>Timeline - Tori</title>
 
   <!-- Description for search engines -->
   <meta name="description" content="Tori.">
 
-  <!-- Keywords (not very important nowadays, but useful for SEO) -->
+  <!-- Keywords (not very important today, but useful for SEO) -->
   <meta name="keywords" content="Tori, game development, horror game, YouTube, video games, indie games, C++, Unreal Engine, Unity">
 
   <!-- Add favicon -->
@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Language -->
-<script>
+  <script>
   const lang = localStorage.getItem('lang') || 'es';
 
   function redirectToLanguagePage(lang) {
@@ -47,8 +47,8 @@
 </head>
 <body>
   <header>
-  <!-- Hamburger button only on mobile -->
-  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+    <!-- Hamburger menu button for mobile only -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
 
   <button class="btn-inicio desktop-only" onclick="window.location.href='/'">
     <strong>TORI</strong>
@@ -66,9 +66,8 @@
     <a href="/en/sobre-mi/">About Me</a>
     <a href="/en/contacto/">Contact</a>
     <a href="/en/galeria/">Gallery</a>
-   <a href="/en/timeline/">Timeline</a>
-   
-    <!-- Language selector -->
+    <a href="/en/timeline/">Timeline</a>
+
     <select id="language-selector-mobile" onchange="changeLanguage(this.value)">
       <option value="es">Español</option>
       <option value="en">English</option>
@@ -98,32 +97,56 @@
 	  window.location.href = newPath;
 	}
 
-    // On load, select the saved language
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('lang') || 'en';
-      document.getElementById('language-selector').value = savedLang;
-	  document.getElementById('language-selector-mobile').value = savedLang;
-    });
+      // On load, select the saved language
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'en';
+        document.getElementById('language-selector').value = savedLang;
+		document.getElementById('language-selector-mobile').value = savedLang;
+      });
 
-    // Function to show/hide menu
-    function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.classList.toggle('show');
-    }
-  </script>
-</header>
-
+      // Toggle menu show/hide
+      function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('show');
+      }
+    </script>
+  </header>
   <main class="page-content">
-    <h1>My Games</h1>
-    <div class="games-grid">
-      <!-- Game 1 -->
-      <a class="game-card" href="/en/theplantshop/">
-      <img src="/images/juego2.webp" alt="Game 2">
-    </a>
-      <a class="game-card" href="/en/deerhead/">
-        <img src="/images/juego1.webp" alt="Game 1">
-      </a>
-    </div>
+<h2>2026</h2>
+  <li>Reached 25.000 subscribers on Youtube.</li>
+
+<h2>2025</h2>
+  <li>Released The Plant Shop (Demo).</li>
+  <li>Started developing The Plant Shop.</li>
+  <li>Published this website.</li>
+  <li>Switched from vegan to vegetarian.</li>
+  <li>Lost my job at Pendulo Studios.</li>
+  <li>Reached 10.000 subscribers on Youtube.</li>
+  
+<h2>2024</h2>
+<li>Reached 1.000 subscribers on Youtube.</li>
+<li>Started a Youtube channel.</li>
+<li>Moved to live with Silvia.</li>
+
+<h2>2022</h2>
+<li>Bought a house.</li>
+
+<h2>2021</h2>
+
+<li>Got a job as a Gameplay Programmer in Pendulo Studios.</li>
+<li>Finished the Game Development Degree (UCM).</li>
+
+<h2>2017</h2>
+
+<li>Moved to Madrid.</li>
+<li>Started the Game Development Degree (UCM).</li>
+
+<h2>1999</h2>
+
+<li>Was born in Cádiz.</li>
+
+<h3></h3>
+	
   </main>
 
   <footer style="background-color: #222; color: white; padding: 20px 0; text-align: center;">
